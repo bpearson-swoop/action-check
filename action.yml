@@ -1,0 +1,27 @@
+name: "Action Checker"
+description: "Checking and testing actions"
+branding:
+  icon: alert-triangle
+  color: blue
+
+inputs:
+  php-version:
+    description: "PHP Version"
+    required: true
+    default: 'latest'
+
+runs:
+  using: "composite"
+  steps:
+    - name: "Setup"
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: ${{ inputs.php-version }}
+        ini-values: "short_open_tag=1"
+
+    - name: "Run check script"
+      shell: bash
+      env:
+        INPUT_PHP_FILE_EXTENSIONS: ${{ inputs.php-file-extensions }}
+        MSGLEVEL: ${{ inputs.message-level }}
+      run: php ${{ github.action_path }}/check.php
