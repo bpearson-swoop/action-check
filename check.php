@@ -11,6 +11,8 @@ if ($headRef === false) {
 }//end if
 
 
-exec(sprintf('cd %s; git diff --name-only %s', getenv('PWD'), $headRef), $output, $return);
+$command = sprintf('git diff --name-only %s', $headRef);
+exec($command, $output, $return);
+var_dump($command);
 var_dump($output);
 
