@@ -20,6 +20,11 @@ exec($command, $output, $return);
 var_dump($command);
 var_dump($output);
 
+$command = 'git remote -v';
+exec($command, $output, $return);
+var_dump($command);
+var_dump($output);
+
 $command = sprintf('git rev-parse --abbrev-ref %s', $baseRef);
 exec($command, $output, $return);
 var_dump($command);
