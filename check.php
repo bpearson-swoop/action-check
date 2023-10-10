@@ -15,7 +15,27 @@ if (!in_array($event, ['push', 'pull_request'])) {
     exit(1);
 }//end if
 
-$command = sprintf('git diff --name-only %s...%s', $headRef, $baseRef);
+$command = sprintf('git diff --name-only %s', $headRef);
+exec($command, $output, $return);
+var_dump($command);
+var_dump($output);
+
+$command = sprintf('git diff --name-only %s..%s', $baseRef, $headRef);
+exec($command, $output, $return);
+var_dump($command);
+var_dump($output);
+
+$command = sprintf('git diff --name-only %s...%s', $baseRef, $headRef);
+exec($command, $output, $return);
+var_dump($command);
+var_dump($output);
+
+$command = sprintf('git diff --name-only %s...', $baseRef);
+exec($command, $output, $return);
+var_dump($command);
+var_dump($output);
+
+$command = sprintf('git diff --name-only %s...', $headRef);
 exec($command, $output, $return);
 var_dump($command);
 var_dump($output);
