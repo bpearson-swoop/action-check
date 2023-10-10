@@ -16,3 +16,12 @@ exec($command, $output, $return);
 var_dump($command);
 var_dump($output);
 
+$command = 'git rev-parse --abbrev-ref HEAD';
+exec($command, $output, $return);
+var_dump($command);
+var_dump($output);
+
+$command = 'git status';
+exec($command, $output, $return);
+var_dump($command);
+var_dump($output);
