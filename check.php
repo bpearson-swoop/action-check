@@ -3,14 +3,19 @@
 
 $baseRef = (getenv('GITHUB_BASE_REF') ?: 'master');
 $headRef = getenv('GITHUB_HEAD_REF');
+$event   = getenv('GITHUB_EVENT_NAME');
 
 if ($headRef === false) {
     echo "No HEAD ref found";
     exit(1);
 }//end if
 
+if (!in_array($event, ['push', 'pull_request'])) {
+    echo "Invalid event: {$event}";
+    exit(1);
+}//end if
 
-$command = sprintf('git diff --name-only %s', $baseRef);
+$command = sprintf('git diff --name-only %s...%s', $headRef, $baseRef);
 exec($command, $output, $return);
 var_dump($command);
 var_dump($output);
